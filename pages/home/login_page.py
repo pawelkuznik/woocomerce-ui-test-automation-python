@@ -11,6 +11,7 @@ class LoginPage(SeleniumDriver):
     # locators
     _my_account_label = "(//a[contains(text(),'My account')])[1]"
     _my_account_after_login_label = "//h1[contains(text(),'My account')]"
+    _my_account_after_failed_login_alert = "//*[contains(@class, 'woocommerce-error')]/li"
     _username_field = "username"
     _password_field = "password"
     _login_button = "//button[contains(text(),'Log in')]"
@@ -27,7 +28,7 @@ class LoginPage(SeleniumDriver):
     def click_login_button(self):
         self.element_click(self._login_button, locator_type="xpath")
 
-    def login(self, username, password):
+    def login(self, username="", password=""):
         self.click_my_account_label()
         self.enter_username(username)
         self.enter_password(password)
@@ -38,6 +39,6 @@ class LoginPage(SeleniumDriver):
         return result
 
     def verify_login_failed(self):
-        pass
-
+        result = self.is_element_presence(self._my_account_after_failed_login_alert, locator_type="xpath")
+        return result
 

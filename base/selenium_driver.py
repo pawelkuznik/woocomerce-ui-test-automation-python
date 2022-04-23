@@ -50,7 +50,7 @@ class SeleniumDriver():
             self.log.info("Clicked on element with locator: " + locator + " locatorType: " + locator_type)
         except:
             self.log.info("Cannot click on the element with locator: " + locator + " locatorType: " + locator_type)
-            self.log.info_stack()
+            print_stack()
 
     def send_keys(self, data, locator, locator_type="id"):
         try:
@@ -59,7 +59,7 @@ class SeleniumDriver():
             self.log.info("Send data on element with locator: " + locator + " locatorType: " + locator_type)
         except:
             self.log.info("Cannot send data on the element with locator: " + locator + " locatorType: " + locator_type)
-            self.log.info_stack()
+            print_stack()
 
     def is_element_presence(self, locator, locator_type="id"):
         try:
@@ -103,5 +103,5 @@ class SeleniumDriver():
             self.log.info("Element appeared on the web page")
         except:
             self.log.info("Element not appeared on the web page")
-            self.log.info_stack()
+            print_stack()
         return element
