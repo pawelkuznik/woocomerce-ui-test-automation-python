@@ -23,7 +23,7 @@ class TestLogin:
 
     @pytest.mark.run(order=1)
     def test_invalid_login(self):
-        self.lp.login("itservices.pawelkuznik1", "Zlehaslo1!")
+        self.lp.login("itservices.pawelkuznik1", "Zlehaslo1dfd!")
         result = self.lp.verify_login_failed()
         assert result is True
 
