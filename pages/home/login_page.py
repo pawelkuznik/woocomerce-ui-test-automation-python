@@ -1,8 +1,10 @@
 from selenium.webdriver.common.by import By
-from base.selenium_driver import SeleniumDriver
+import logging
+import utilities.custom_logger as cl
+from base.base_page import BasePage
 
-
-class LoginPage(SeleniumDriver):
+class LoginPage(BasePage):
+    log = cl.custom_logger(logging.DEBUG)
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -10,7 +12,7 @@ class LoginPage(SeleniumDriver):
 
     # locators
     _my_account_label = "(//a[contains(text(),'My account')])[1]"
-    _my_account_after_login_label = "//h1[contains(text(),'My account')]"
+    _my_account_after_login_label = "//h1[contains(text(),'My accountt')]"
     _my_account_after_failed_login_alert = "//*[contains(@class, 'woocommerce-error')]/li"
     _username_field = "username"
     _password_field = "password"

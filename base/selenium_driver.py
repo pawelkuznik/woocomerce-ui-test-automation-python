@@ -5,14 +5,34 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
 import utilities.custom_logger as cl
 import logging
-
-
+import time
+import os
 class SeleniumDriver():
 
     log = cl.custom_logger(logging.DEBUG)
 
     def __init__(self, driver):
         self.driver = driver
+
+    def screen_shot(self, result_message):
+        """
+        Takes screenshot of the current open web page
+        """
+        file_name = result_message + "." + str(round(time.time() * 1000)) + ".png"
+        screenshot_directory = "../screenshots/"
+        relative_file_name = screenshot_directory + file_name
+        current_directory = os.path.dirname(__file__)
+        destination_file = os.path.join(current_directory, relative_file_name)
+        destination_directory = os.path.join(current_directory, screenshot_directory)
+
+        try:
+            if not os.path.exists(destination_directory):
+                os.makedirs(destination_directory)
+            self.driver.save_screenshot(destination_file)
+            self.log.info("Screenshot save to directory: " + destination_file)
+        except:
+            self.log.error("### Exception Occurred when taking screenshot")
+            print_stack()
 
     def get_by_type(self, locator_type):
         locator_type = locator_type.lower()
@@ -43,9 +63,10 @@ class SeleniumDriver():
             self.log.info("Element not found")
         return element
 
-    def element_click(self, locator, locator_type="id"):
+    def element_click(self, locator, locator_type="id", element=None):
         try:
-            element = self.get_element(locator, locator_type)
+            if locator:
+                element = self.get_element(locator, locator_type)
             element.click()
             self.log.info("Clicked on element with locator: " + locator + " locatorType: " + locator_type)
         except:
