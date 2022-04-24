@@ -21,6 +21,7 @@ class LoginPage(BasePage):
     _password_field = "password"
     _login_button = "//button[contains(text(),'Log in')]"
 
+
     # def click_my_account_label(self):
     #     self.element_click(self._my_account_label, locator_type="xpath")
 
