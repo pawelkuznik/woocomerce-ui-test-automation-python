@@ -20,6 +20,7 @@ class LoginPage(BasePage):
     _username_field = "username"
     _password_field = "password"
     _login_button = "//button[contains(text(),'Log in')]"
+    _register_username
 
     # def click_my_account_label(self):
     #     self.element_click(self._my_account_label, locator_type="xpath")
@@ -46,4 +47,8 @@ class LoginPage(BasePage):
     def verify_login_failed(self):
         result = self.is_element_presence(self._my_account_after_failed_login_alert, locator_type="xpath")
         return result
+
+    def register_with_random_email(self):
+        self.nav.click_my_account_label()
+        self
 
