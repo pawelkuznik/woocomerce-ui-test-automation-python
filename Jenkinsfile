@@ -10,7 +10,7 @@ pipeline {
         }
         stage('run tests') {
             steps {
-                sh 'python3 -m pytest3 -s -v --html=report.html tests/home/test_login.py  --browser zalenium'
+                sh 'python3 -m pytest -s -v --html=report.html tests/home/test_login.py  --browser zalenium'
 
             }
         }
